@@ -154,7 +154,11 @@ def main():
         "hubCity": "Hong Kong",
         "dates": axis,
         "destinations": [{"code": d["code"], "city": d["city"],
-                          "country": d.get("country", "")}
+                          "cityZh": d.get("cityZh", d["city"]),
+                          "country": d.get("country", ""),
+                          "countryZh": d.get("countryZh", d.get("country", "")),
+                          "continent": d.get("continent", "其他"),
+                          "continentEn": d.get("continentEn", "Other")}
                          for d in dests["destinations"]],
         "cabins": grid,
         "return": rgrid,

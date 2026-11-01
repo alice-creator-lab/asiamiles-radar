@@ -23,7 +23,7 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
 CX_HEADERS = {"User-Agent": UA,
               "Referer": "https://www.cathaypacific.com/cx/en_HK.html"}
-OD_URL = "https://api.cathaypacific.com/ibe-od/v3.0/en_HK/{hub}"
+OD_URL = "https://api.cathaypacific.com/ibe-od/v3.0/{loc}/{hub}"
 CAL_URL = ("https://api.cathaypacific.com/afr/search/availability/en.{o}.{d}."
            "{cab}.CX.1.{s}.{e}.json")
 
@@ -112,10 +112,41 @@ def main():
     rows = parse_wikitext(wiki["parse"]["wikitext"])
     print(f"wiki rows: {len(rows)}")
 
-    od = fetch_json(OD_URL.format(hub=args.hub))["airports"]
+    od = fetch_json(OD_URL.format(loc="en_HK", hub=args.hub))["airports"]
     ports = [{"code": a["airportCode"],
-              "city": a["airportDetails"]["city"]["name"],
+              "city": a["airportDetails"]["city"]["defaultName"],
+              "country": a["airportDetails"]["country"]["defaultName"],
+              "region": a.get("regionName", ""),
               "full": a["airportDetails"]["airportFullName"]} for a in od]
+
+    # Chinese names + region labels come from Cathay's own zh_HK locale
+    zhm = {}
+    try:
+        for a in fetch_json(OD_URL.format(loc="zh_HK", hub=args.hub))["airports"]:
+            det = a["airportDetails"]
+            zhm[a["airportCode"]] = {
+                "cityZh": det["city"]["name"],
+                "countryZh": det["country"]["name"],
+                "fullZh": det["airportFullName"],
+                "regionZh": a.get("regionName", ""),
+            }
+    except Exception as e:  # noqa: BLE001
+        print("zh_HK locale fetch failed:", e)
+
+    CONTINENTS = {
+        "asia": ("亞洲", "Asia"), "middle east": ("亞洲", "Asia"),
+        "europe": ("歐洲", "Europe"), "africa": ("非洲", "Africa"),
+        "americas": ("美洲", "Americas"),
+        "australasia": ("大洋洲", "Oceania"), "oceania": ("大洋洲", "Oceania"),
+    }
+
+    def continent(region):
+        r = (region or "").strip().lower().replace("_", " ").replace("-", " ")
+        r = " ".join(r.split())
+        if r.startswith("china") or r.startswith("middle east"):
+            return ("亞洲", "Asia")
+        return CONTINENTS.get(r, (region or "其他", region or "Other"))
+
     by_airport = {}
     by_city = {}
     for p in ports:
@@ -152,8 +183,17 @@ def main():
             continue
         p = best[1]
         code = p["code"].rstrip("+")  # BKK+ / SHA+ style port codes
-        dests.append({"code": code, "city": r["city"], "country": r["country"],
-                      "airport": r["airport"], "notes": r["notes"]})
+        z = zhm.get(p["code"], zhm.get(code, {}))
+        cont, cont_en = continent(p.get("region") or z.get("regionZh", ""))
+        dests.append({
+            "code": code,
+            "city": p["city"], "cityZh": z.get("cityZh", p["city"]),
+            "country": p.get("country") or r["country"],
+            "countryZh": z.get("countryZh", r["country"]),
+            "continent": cont, "continentEn": cont_en,
+            "airport": p["full"], "airportZh": z.get("fullZh", p["full"]),
+            "notes": r["notes"],
+        })
 
     # de-dupe by code
     seen, uniq = set(), []
@@ -197,7 +237,7 @@ def main():
                 print("   dropped:", d["code"], d["city"])
         dests = keep + unknown
 
-    dests.sort(key=lambda d: (d["country"], d["city"]))
+    dests.sort(key=lambda d: (d["continentEn"], d["country"], d["city"]))
     payload = {"hub": args.hub, "count": len(dests), "destinations": dests}
     with open("data/destinations.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=1)

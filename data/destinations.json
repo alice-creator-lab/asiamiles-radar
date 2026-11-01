@@ -3,557 +3,952 @@
  "count": 79,
  "destinations": [
   {
-   "code": "ADL",
-   "city": "Adelaide",
-   "country": "Australia",
-   "airport": "Adelaide Airport",
-   "notes": ""
-  },
-  {
-   "code": "BNE",
-   "city": "Brisbane",
-   "country": "Australia",
-   "airport": "Brisbane Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "MEL",
-   "city": "Melbourne",
-   "country": "Australia",
-   "airport": "Melbourne Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "PER",
-   "city": "Perth",
-   "country": "Australia",
-   "airport": "Perth Airport",
+   "code": "JNB",
+   "city": "Johannesburg",
+   "cityZh": "約翰內斯堡(約翰尼斯堡)",
+   "country": "South Africa",
+   "countryZh": "南非",
+   "continent": "非洲",
+   "continentEn": "Africa",
+   "airport": "O. R. Tambo International Airport",
+   "airportZh": "奧利弗坦博國際機場",
    "notes": "Passenger"
-  },
-  {
-   "code": "SYD",
-   "city": "Sydney",
-   "country": "Australia",
-   "airport": "Sydney Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "DAC",
-   "city": "Dhaka",
-   "country": "Bangladesh",
-   "airport": "Hazrat Shahjalal International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "BRU",
-   "city": "Brussels",
-   "country": "Belgium",
-   "airport": "Brussels Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "KTI",
-   "city": "Phnom Penh",
-   "country": "Cambodia",
-   "airport": "Phnom Penh International Airport",
-   "notes": ""
   },
   {
    "code": "YYZ",
    "city": "Toronto",
+   "cityZh": "多倫多",
    "country": "Canada",
+   "countryZh": "加拿大",
+   "continent": "美洲",
+   "continentEn": "Americas",
    "airport": "Toronto Pearson International Airport",
+   "airportZh": "多倫多皮爾遜國際機場",
    "notes": "Passenger + cargo"
   },
   {
    "code": "YVR",
    "city": "Vancouver",
+   "cityZh": "溫哥華",
    "country": "Canada",
+   "countryZh": "加拿大",
+   "continent": "美洲",
+   "continentEn": "Americas",
    "airport": "Vancouver International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "PEK",
-   "city": "Beijing",
-   "country": "China",
-   "airport": "Beijing Capital International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "CTU",
-   "city": "Chengdu",
-   "country": "China",
-   "airport": "Chengdu Shuangliu International Airport",
-   "notes": "Passenger  + Cargo"
-  },
-  {
-   "code": "CKG",
-   "city": "Chongqing",
-   "country": "China",
-   "airport": "Chongqing Jiangbei International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "FOC",
-   "city": "Fuzhou",
-   "country": "China",
-   "airport": "Fuzhou Changle International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "CAN",
-   "city": "Guangzhou",
-   "country": "China",
-   "airport": "Guangzhou Baiyun International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "HAK",
-   "city": "Haikou",
-   "country": "China",
-   "airport": "Haikou Meilan International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "HGH",
-   "city": "Hangzhou",
-   "country": "China",
-   "airport": "Hangzhou Xiaoshan International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "NKG",
-   "city": "Nanjing",
-   "country": "China",
-   "airport": "Nanjing Lukou International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "NGB",
-   "city": "Ningbo",
-   "country": "China",
-   "airport": "Ningbo Lishe International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "TAO",
-   "city": "Qingdao",
-   "country": "China",
-   "airport": "Qingdao Jiaodong International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "SHA",
-   "city": "Shanghai",
-   "country": "China",
-   "airport": "Shanghai Hongqiao International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "PVG",
-   "city": "Shanghai",
-   "country": "China",
-   "airport": "Shanghai Pudong International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "WNZ",
-   "city": "Wenzhou",
-   "country": "China",
-   "airport": "Wenzhou Yongqiang International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "WUH",
-   "city": "Wuhan",
-   "country": "China",
-   "airport": "Wuhan Tianhe International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "XIY",
-   "city": "Xi'an",
-   "country": "China",
-   "airport": "Xi'an Xianyang International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "XMN",
-   "city": "Xiamen",
-   "country": "China",
-   "airport": "Xiamen Gaoqi International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "CGO",
-   "city": "Zhengzhou",
-   "country": "China",
-   "airport": "Zhengzhou Xinzheng International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "CDG",
-   "city": "Paris",
-   "country": "France",
-   "airport": "Charles de Gaulle Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "FRA",
-   "city": "Frankfurt",
-   "country": "Germany",
-   "airport": "Frankfurt Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "MUC",
-   "city": "Munich",
-   "country": "Germany",
-   "airport": "Munich Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "BLR",
-   "city": "Bengaluru",
-   "country": "India",
-   "airport": "Kempegowda International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "MAA",
-   "city": "Chennai",
-   "country": "India",
-   "airport": "Chennai International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "DEL",
-   "city": "Delhi",
-   "country": "India",
-   "airport": "Indira Gandhi International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "HYD",
-   "city": "Hyderabad",
-   "country": "India",
-   "airport": "Rajiv Gandhi International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "BOM",
-   "city": "Mumbai",
-   "country": "India",
-   "airport": "Chhatrapati Shivaji Maharaj International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "DPS",
-   "city": "Denpasar",
-   "country": "Indonesia",
-   "airport": "Ngurah Rai International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "CGK",
-   "city": "Jakarta",
-   "country": "Indonesia",
-   "airport": "Soekarno–Hatta International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "SUB",
-   "city": "Surabaya",
-   "country": "Indonesia",
-   "airport": "Juanda International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "MXP",
-   "city": "Milan",
-   "country": "Italy",
-   "airport": "Milan Malpensa Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "FCO",
-   "city": "Rome",
-   "country": "Italy",
-   "airport": "Rome Fiumicino Airport",
-   "notes": ""
-  },
-  {
-   "code": "FUK",
-   "city": "Fukuoka",
-   "country": "Japan",
-   "airport": "Fukuoka Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "NGO",
-   "city": "Nagoya",
-   "country": "Japan",
-   "airport": "Chubu Centrair International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "KIX",
-   "city": "Osaka",
-   "country": "Japan",
-   "airport": "Kansai International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "CTS",
-   "city": "Sapporo",
-   "country": "Japan",
-   "airport": "New Chitose Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "HND",
-   "city": "Tokyo",
-   "country": "Japan",
-   "airport": "Haneda Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "NRT",
-   "city": "Tokyo",
-   "country": "Japan",
-   "airport": "Narita International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "KUL",
-   "city": "Kuala Lumpur",
-   "country": "Malaysia",
-   "airport": "Kuala Lumpur International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "PEN",
-   "city": "Penang",
-   "country": "Malaysia",
-   "airport": "Penang International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "KTM",
-   "city": "Kathmandu",
-   "country": "Nepal",
-   "airport": "Tribhuvan International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "AMS",
-   "city": "Amsterdam",
-   "country": "Netherlands",
-   "airport": "Amsterdam Airport Schiphol",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "AKL",
-   "city": "Auckland",
-   "country": "New Zealand",
-   "airport": "Auckland Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "CHC",
-   "city": "Christchurch",
-   "country": "New Zealand",
-   "airport": "Christchurch Airport",
-   "notes": ""
-  },
-  {
-   "code": "CEB",
-   "city": "Cebu",
-   "country": "Philippines",
-   "airport": "Mactan–Cebu International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "MNL",
-   "city": "Manila",
-   "country": "Philippines",
-   "airport": "Ninoy Aquino International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "RUH",
-   "city": "Riyadh",
-   "country": "Saudi Arabia",
-   "airport": "King Khalid International Airport",
-   "notes": ""
-  },
-  {
-   "code": "SIN",
-   "city": "Singapore",
-   "country": "Singapore",
-   "airport": "Changi Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "JNB",
-   "city": "Johannesburg",
-   "country": "South Africa",
-   "airport": "O. R. Tambo International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "ICN",
-   "city": "Seoul",
-   "country": "South Korea",
-   "airport": "Gimpo International Airport",
-   "notes": ""
-  },
-  {
-   "code": "BCN",
-   "city": "Barcelona",
-   "country": "Spain",
-   "airport": "Josep Tarradellas Barcelona–El Prat Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "MAD",
-   "city": "Madrid",
-   "country": "Spain",
-   "airport": "Adolfo Suárez Madrid–Barajas Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "CMB",
-   "city": "Colombo",
-   "country": "Sri Lanka",
-   "airport": "Bandaranaike International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "ZRH",
-   "city": "Zurich",
-   "country": "Switzerland",
-   "airport": "Zurich Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "KHH",
-   "city": "Kaohsiung",
-   "country": "Taiwan",
-   "airport": "Kaohsiung International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "TPE",
-   "city": "Taipei",
-   "country": "Taiwan",
-   "airport": "Taoyuan International Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "BKK",
-   "city": "Bangkok",
-   "country": "Thailand",
-   "airport": "Don Mueang International Airport",
-   "notes": ""
-  },
-  {
-   "code": "HKT",
-   "city": "Phuket",
-   "country": "Thailand",
-   "airport": "Phuket International Airport",
-   "notes": "Passenger"
-  },
-  {
-   "code": "DXB",
-   "city": "Dubai",
-   "country": "United Arab Emirates",
-   "airport": "Dubai International Airport",
-   "notes": ""
-  },
-  {
-   "code": "LHR",
-   "city": "London",
-   "country": "United Kingdom",
-   "airport": "Heathrow Airport",
-   "notes": "Passenger + cargo"
-  },
-  {
-   "code": "MAN",
-   "city": "Manchester",
-   "country": "United Kingdom",
-   "airport": "Manchester Airport",
+   "airportZh": "溫哥華國際機場",
    "notes": "Passenger"
   },
   {
    "code": "BOS",
    "city": "Boston",
+   "cityZh": "波士頓",
    "country": "United States",
+   "countryZh": "美國",
+   "continent": "美洲",
+   "continentEn": "Americas",
    "airport": "Logan International Airport",
+   "airportZh": "羅根國際機場",
    "notes": "Passenger"
   },
   {
    "code": "ORD",
    "city": "Chicago",
+   "cityZh": "芝加哥",
    "country": "United States",
-   "airport": "O'Hare International Airport",
+   "countryZh": "美國",
+   "continent": "美洲",
+   "continentEn": "Americas",
+   "airport": "Chicago O'Hare International Airport",
+   "airportZh": "芝加哥奧黑爾國際機場",
    "notes": "Passenger + cargo"
   },
   {
    "code": "DFW",
-   "city": "Dallas",
+   "city": "Dallas Fort Worth",
+   "cityZh": "達拉斯",
    "country": "United States",
-   "airport": "Dallas Fort Worth International Airport",
+   "countryZh": "美國",
+   "continent": "美洲",
+   "continentEn": "Americas",
+   "airport": "Dallas/Fort Worth International Airport",
+   "airportZh": "達拉斯/沃斯堡國際機場",
    "notes": "Passenger + cargo"
   },
   {
    "code": "LAX",
    "city": "Los Angeles",
+   "cityZh": "洛杉磯",
    "country": "United States",
+   "countryZh": "美國",
+   "continent": "美洲",
+   "continentEn": "Americas",
    "airport": "Los Angeles International Airport",
+   "airportZh": "洛杉磯國際機場",
    "notes": "Passenger + cargo"
   },
   {
    "code": "JFK",
-   "city": "New York City",
+   "city": "New York",
+   "cityZh": "紐約",
    "country": "United States",
+   "countryZh": "美國",
+   "continent": "美洲",
+   "continentEn": "Americas",
    "airport": "John F. Kennedy International Airport",
+   "airportZh": "約翰·甘迺迪國際機場",
    "notes": "Passenger + cargo"
   },
   {
    "code": "SFO",
    "city": "San Francisco",
+   "cityZh": "三藩市（舊金山）",
    "country": "United States",
+   "countryZh": "美國",
+   "continent": "美洲",
+   "continentEn": "Americas",
    "airport": "San Francisco International Airport",
+   "airportZh": "三藩市國際機場",
    "notes": "Passenger"
   },
   {
    "code": "SEA",
    "city": "Seattle",
+   "cityZh": "西雅圖",
    "country": "United States",
-   "airport": "Seattle–Tacoma International Airport",
+   "countryZh": "美國",
+   "continent": "美洲",
+   "continentEn": "Americas",
+   "airport": "Seattle-Tacoma International Airport",
+   "airportZh": "西雅圖塔科馬國際機場",
    "notes": "Passenger"
   },
   {
-   "code": "HAN",
-   "city": "Hanoi",
-   "country": "Vietnam",
-   "airport": "Noi Bai International Airport",
+   "code": "DAC",
+   "city": "Dhaka",
+   "cityZh": "達卡",
+   "country": "Bangladesh",
+   "countryZh": "孟加拉國",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Hazrat Shahjalal International Airport",
+   "airportZh": "哈茲拉特．沙迦拉國際機場",
    "notes": "Passenger + cargo"
   },
   {
-   "code": "SGN",
-   "city": "Ho Chi Minh City",
-   "country": "Vietnam",
-   "airport": "Tan Son Nhat International Airport",
+   "code": "KTI",
+   "city": "Phnom Penh",
+   "cityZh": "金邊",
+   "country": "Cambodia",
+   "countryZh": "柬埔寨",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Techo International Airport",
+   "airportZh": "德崇國際機場",
+   "notes": ""
+  },
+  {
+   "code": "BLR",
+   "city": "Bengaluru (Bangalore)",
+   "cityZh": "班加羅爾",
+   "country": "India",
+   "countryZh": "印度",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Kempegowda International Airport, Bengaluru",
+   "airportZh": "坎貝高達班加羅爾國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "MAA",
+   "city": "Chennai",
+   "cityZh": "真奈",
+   "country": "India",
+   "countryZh": "印度",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Chennai International Airport",
+   "airportZh": "真奈國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "DEL",
+   "city": "Delhi",
+   "cityZh": "德里",
+   "country": "India",
+   "countryZh": "印度",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Indira Gandhi International Airport",
+   "airportZh": "英迪拉．甘地國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "HYD",
+   "city": "Hyderabad",
+   "cityZh": "海得拉巴",
+   "country": "India",
+   "countryZh": "印度",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Rajiv Gandhi International Airport",
+   "airportZh": "拉吉夫·甘地國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "BOM",
+   "city": "Mumbai",
+   "cityZh": "孟買",
+   "country": "India",
+   "countryZh": "印度",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Chhatrapati Shivaji Maharaj International Airport",
+   "airportZh": "賈特拉帕蒂希瓦吉國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "DPS",
+   "city": "Denpasar (Bali)",
+   "cityZh": "登巴薩（峇里島）",
+   "country": "Indonesia",
+   "countryZh": "印度尼西亞",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Ngurah Rai International Airport",
+   "airportZh": "伍拉．賴國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CGK",
+   "city": "Jakarta",
+   "cityZh": "雅加達",
+   "country": "Indonesia",
+   "countryZh": "印度尼西亞",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Soekarno-Hatta International Airport",
+   "airportZh": "蘇加諾哈達國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "SUB",
+   "city": "Surabaya",
+   "cityZh": "泗水",
+   "country": "Indonesia",
+   "countryZh": "印度尼西亞",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Juanda International Airport",
+   "airportZh": "朱安達國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "FUK",
+   "city": "Fukuoka",
+   "cityZh": "福岡",
+   "country": "Japan",
+   "countryZh": "日本",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Fukuoka Airport",
+   "airportZh": "福岡機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "NGO",
+   "city": "Nagoya",
+   "cityZh": "名古屋",
+   "country": "Japan",
+   "countryZh": "日本",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Chubu Centrair International Airport",
+   "airportZh": "中部國際機場（新特麗亞）",
+   "notes": "Passenger"
+  },
+  {
+   "code": "KIX",
+   "city": "Osaka",
+   "cityZh": "大阪",
+   "country": "Japan",
+   "countryZh": "日本",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Kansai International Airport",
+   "airportZh": "關西國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "CTS",
+   "city": "Sapporo",
+   "cityZh": "札幌",
+   "country": "Japan",
+   "countryZh": "日本",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "New Chitose Airport",
+   "airportZh": "新千歲機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "HND",
+   "city": "Tokyo",
+   "cityZh": "東京",
+   "country": "Japan",
+   "countryZh": "日本",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Haneda Airport",
+   "airportZh": "羽田機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "NRT",
+   "city": "Tokyo",
+   "cityZh": "東京",
+   "country": "Japan",
+   "countryZh": "日本",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Narita International Airport",
+   "airportZh": "成田國際機場",
    "notes": "Passenger + cargo"
   },
   {
    "code": "ALA",
    "city": "Almaty",
-   "country": "rowspan=2|Kazakhstan",
+   "cityZh": "阿拉木圖",
+   "country": "Kazakhstan",
+   "countryZh": "哈薩克斯坦",
+   "continent": "亞洲",
+   "continentEn": "Asia",
    "airport": "Almaty International Airport",
+   "airportZh": "阿拉木圖國際機場",
    "notes": "}}"
+  },
+  {
+   "code": "KUL",
+   "city": "Kuala Lumpur",
+   "cityZh": "吉隆坡",
+   "country": "Malaysia",
+   "countryZh": "馬來西亞",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Kuala Lumpur International Airport",
+   "airportZh": "吉隆坡國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "PEN",
+   "city": "Penang",
+   "cityZh": "檳城",
+   "country": "Malaysia",
+   "countryZh": "馬來西亞",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Penang International Airport",
+   "airportZh": "檳城國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "KTM",
+   "city": "Kathmandu",
+   "cityZh": "加德滿都",
+   "country": "Nepal",
+   "countryZh": "尼泊爾",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Tribhuvan International Airport",
+   "airportZh": "特里布萬國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CEB",
+   "city": "Cebu",
+   "cityZh": "宿霧",
+   "country": "Philippines",
+   "countryZh": "菲律賓",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Mactan-Cebu International Airport",
+   "airportZh": "馬丹宿霧國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "MNL",
+   "city": "Manila",
+   "cityZh": "馬尼拉",
+   "country": "Philippines",
+   "countryZh": "菲律賓",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Ninoy Aquino International Airport",
+   "airportZh": "尼諾伊·阿基諾國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "RUH",
+   "city": "Riyadh",
+   "cityZh": "利雅得",
+   "country": "Saudi Arabia",
+   "countryZh": "沙特亞拉伯",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "King Khalid International Airport",
+   "airportZh": "哈立德國王國際機場",
+   "notes": ""
+  },
+  {
+   "code": "SIN",
+   "city": "Singapore",
+   "cityZh": "新加坡",
+   "country": "Singapore",
+   "countryZh": "新加坡",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Changi Airport",
+   "airportZh": "樟宜機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "ICN",
+   "city": "Seoul",
+   "cityZh": "首爾",
+   "country": "South Korea",
+   "countryZh": "南韓",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Incheon International Airport",
+   "airportZh": "仁川國際機場",
+   "notes": ""
+  },
+  {
+   "code": "CMB",
+   "city": "Colombo",
+   "cityZh": "科倫坡(可倫坡)",
+   "country": "Sri Lanka",
+   "countryZh": "斯里蘭卡",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Bandaranaike International Airport",
+   "airportZh": "班達拉奈克國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "KHH",
+   "city": "Kaohsiung",
+   "cityZh": "高雄",
+   "country": "Taiwan, China",
+   "countryZh": "中國台灣",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Kaohsiung International Airport",
+   "airportZh": "高雄國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "TPE",
+   "city": "Taipei",
+   "cityZh": "台北",
+   "country": "Taiwan, China",
+   "countryZh": "中國台灣",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Taoyuan International Airport",
+   "airportZh": "桃園國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "BKK",
+   "city": "Bangkok",
+   "cityZh": "曼谷",
+   "country": "Thailand",
+   "countryZh": "泰國",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Suvarnabhumi International Airport / Don Mueang International Airport",
+   "airportZh": "素萬那普國際機場 / 廊曼國際機場",
+   "notes": ""
+  },
+  {
+   "code": "HKT",
+   "city": "Phuket",
+   "cityZh": "布吉(普吉島)",
+   "country": "Thailand",
+   "countryZh": "泰國",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Phuket International Airport",
+   "airportZh": "布吉國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "PEK",
+   "city": "Beijing",
+   "cityZh": "北京",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Beijing Capital International Airport",
+   "airportZh": "北京首都國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CTU",
+   "city": "Chengdu",
+   "cityZh": "成都",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Chengdu Shuangliu International Airport",
+   "airportZh": "成都雙流國際機場",
+   "notes": "Passenger  + Cargo"
+  },
+  {
+   "code": "CKG",
+   "city": "Chongqing",
+   "cityZh": "重慶",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Chongqing Jiangbei International Airport",
+   "airportZh": "重慶江北國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "FOC",
+   "city": "Fuzhou",
+   "cityZh": "福州",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Fuzhou Changle International Airport",
+   "airportZh": "福州長樂國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CAN",
+   "city": "Guangzhou",
+   "cityZh": "廣州",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Guangzhou Baiyun International Airport",
+   "airportZh": "廣州白雲國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "HAK",
+   "city": "Haikou",
+   "cityZh": "海口",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Haikou Meilan International Airport",
+   "airportZh": "海口美蘭國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "HGH",
+   "city": "Hangzhou",
+   "cityZh": "杭州",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Hangzhou Xiaoshan International Airport",
+   "airportZh": "杭州蕭山國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "NKG",
+   "city": "Nanjing",
+   "cityZh": "南京",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Nanjing Lukou International Airport",
+   "airportZh": "南京祿口國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "NGB",
+   "city": "Ningbo",
+   "cityZh": "寧波",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Ningbo Lishe International Airport",
+   "airportZh": "寧波櫟社國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "TAO",
+   "city": "Qingdao",
+   "cityZh": "青島",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Qingdao Jiaodong International Airport",
+   "airportZh": "青島膠東國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "SHA",
+   "city": "Shanghai",
+   "cityZh": "上海",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Shanghai Hongqiao International Airport",
+   "airportZh": "上海虹橋國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "PVG",
+   "city": "Shanghai",
+   "cityZh": "上海",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Shanghai Pudong International Airport",
+   "airportZh": "上海浦東國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "WNZ",
+   "city": "Wenzhou",
+   "cityZh": "溫州",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Wenzhou Longwan International Airport",
+   "airportZh": "溫州龍灣國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "WUH",
+   "city": "Wuhan",
+   "cityZh": "武漢",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Wuhan Tianhe International Airport",
+   "airportZh": "武漢天河國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "XIY",
+   "city": "Xi'an",
+   "cityZh": "西安",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Xi’an Xianyang International Airport",
+   "airportZh": "西安咸陽國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "XMN",
+   "city": "Xiamen",
+   "cityZh": "廈門",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Xiamen Gaoqi International Airport",
+   "airportZh": "廈門高崎國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "CGO",
+   "city": "Zhengzhou",
+   "cityZh": "鄭州",
+   "country": "The Chinese Mainland",
+   "countryZh": "中國內地",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Zhengzhou Xinzheng International Airport",
+   "airportZh": "鄭州新鄭國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "DXB",
+   "city": "Dubai",
+   "cityZh": "杜拜",
+   "country": "United Arab Emirates",
+   "countryZh": "阿聯酋",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Dubai International Airport",
+   "airportZh": "杜拜國際機場",
+   "notes": ""
+  },
+  {
+   "code": "HAN",
+   "city": "Hanoi",
+   "cityZh": "河內",
+   "country": "Vietnam",
+   "countryZh": "越南",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Noi Bai International Airport",
+   "airportZh": "內排國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "SGN",
+   "city": "Ho Chi Minh City",
+   "cityZh": "胡志明市",
+   "country": "Vietnam",
+   "countryZh": "越南",
+   "continent": "亞洲",
+   "continentEn": "Asia",
+   "airport": "Tan Son Nhat International Airport",
+   "airportZh": "新山一國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "BRU",
+   "city": "Brussels",
+   "cityZh": "布魯塞爾",
+   "country": "Belgium",
+   "countryZh": "比利時",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Brussels Airport",
+   "airportZh": "布魯塞爾機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CDG",
+   "city": "Paris",
+   "cityZh": "巴黎",
+   "country": "France",
+   "countryZh": "法國",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Paris Charles de Gaulle Airport",
+   "airportZh": "巴黎戴高樂機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "FRA",
+   "city": "Frankfurt",
+   "cityZh": "法蘭克福",
+   "country": "Germany",
+   "countryZh": "德國",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Frankfurt International Airport",
+   "airportZh": "法蘭克福國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "MUC",
+   "city": "Munich",
+   "cityZh": "慕尼黑",
+   "country": "Germany",
+   "countryZh": "德國",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Munich International Airport",
+   "airportZh": "慕尼黑國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "MXP",
+   "city": "Milan",
+   "cityZh": "米蘭",
+   "country": "Italy",
+   "countryZh": "意大利",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Milan Malpensa Airport",
+   "airportZh": "米蘭馬爾彭薩機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "FCO",
+   "city": "Rome",
+   "cityZh": "羅馬",
+   "country": "Italy",
+   "countryZh": "意大利",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Leonardo Da Vinci International (Fiumicino) Airport",
+   "airportZh": "達文西國際機場",
+   "notes": ""
+  },
+  {
+   "code": "AMS",
+   "city": "Amsterdam",
+   "cityZh": "阿姆斯特丹",
+   "country": "Netherlands",
+   "countryZh": "荷蘭",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Amsterdam Schiphol Airport",
+   "airportZh": "史基浦機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "BCN",
+   "city": "Barcelona",
+   "cityZh": "巴塞羅那(巴塞隆納)",
+   "country": "Spain",
+   "countryZh": "西班牙",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Barcelona-El Prat Airport",
+   "airportZh": "巴塞隆納埃爾普拉特機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "MAD",
+   "city": "Madrid",
+   "cityZh": "馬德里",
+   "country": "Spain",
+   "countryZh": "西班牙",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Adolfo Suárez Madrid–Barajas Airport",
+   "airportZh": "阿道夫·蘇亞雷斯馬德里–巴拉哈斯機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "ZRH",
+   "city": "Zurich",
+   "cityZh": "蘇黎世",
+   "country": "Switzerland",
+   "countryZh": "瑞士",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Zurich Airport",
+   "airportZh": "蘇黎世機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "LHR",
+   "city": "London",
+   "cityZh": "倫敦",
+   "country": "United Kingdom",
+   "countryZh": "英國",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "London Heathrow Airport",
+   "airportZh": "倫敦希斯路機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "MAN",
+   "city": "Manchester",
+   "cityZh": "曼徹斯特",
+   "country": "United Kingdom",
+   "countryZh": "英國",
+   "continent": "歐洲",
+   "continentEn": "Europe",
+   "airport": "Manchester Airport",
+   "airportZh": "曼徹斯特機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "ADL",
+   "city": "Adelaide",
+   "cityZh": "阿德萊德（阿德雷德）",
+   "country": "Australia",
+   "countryZh": "澳洲",
+   "continent": "大洋洲",
+   "continentEn": "Oceania",
+   "airport": "Adelaide International Airport",
+   "airportZh": "阿德萊德國際機場",
+   "notes": ""
+  },
+  {
+   "code": "BNE",
+   "city": "Brisbane",
+   "cityZh": "布里斯本",
+   "country": "Australia",
+   "countryZh": "澳洲",
+   "continent": "大洋洲",
+   "continentEn": "Oceania",
+   "airport": "Brisbane International Airport",
+   "airportZh": "布里斯本國際機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "MEL",
+   "city": "Melbourne",
+   "cityZh": "墨爾本",
+   "country": "Australia",
+   "countryZh": "澳洲",
+   "continent": "大洋洲",
+   "continentEn": "Oceania",
+   "airport": "Melbourne Airport",
+   "airportZh": "墨爾本機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "PER",
+   "city": "Perth",
+   "cityZh": "珀斯（伯斯）",
+   "country": "Australia",
+   "countryZh": "澳洲",
+   "continent": "大洋洲",
+   "continentEn": "Oceania",
+   "airport": "Perth Airport",
+   "airportZh": "珀斯機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "SYD",
+   "city": "Sydney",
+   "cityZh": "悉尼（雪梨）",
+   "country": "Australia",
+   "countryZh": "澳洲",
+   "continent": "大洋洲",
+   "continentEn": "Oceania",
+   "airport": "Sydney Kingsford Smith Airport",
+   "airportZh": "悉尼金斯福德·史密斯機場",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "AKL",
+   "city": "Auckland",
+   "cityZh": "奧克蘭",
+   "country": "New Zealand",
+   "countryZh": "新西蘭",
+   "continent": "大洋洲",
+   "continentEn": "Oceania",
+   "airport": "Auckland International Airport",
+   "airportZh": "奧克蘭國際機場",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CHC",
+   "city": "Christchurch",
+   "cityZh": "基督城",
+   "country": "New Zealand",
+   "countryZh": "新西蘭",
+   "continent": "大洋洲",
+   "continentEn": "Oceania",
+   "airport": "Christchurch International Airport",
+   "airportZh": "基督城國際機場",
+   "notes": ""
   }
  ]
 }

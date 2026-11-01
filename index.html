@@ -10,8 +10,8 @@
   :root{
     --bg:#0b1220; --panel:#121a2b; --panel2:#0f1626; --line:#233049;
     --txt:#e8eefc; --dim:#8fa0bf; --dim2:#5d6b85;
-    --hi:#2ecc71; --lo:#f0b429; --no:#2a3550;
-    --accent:#59b0ff; --danger:#ff6b6b; --radius:14px;
+    --hi:#2ecc71; --lo:#f0b429;
+    --accent:#59b0ff; --radius:14px;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -34,9 +34,10 @@
   .row{display:flex;gap:10px;flex-wrap:wrap}
   .fld{display:flex;flex-direction:column;gap:5px;flex:1 1 150px;min-width:0}
   .fld label{font-size:11.5px;color:var(--dim);letter-spacing:.4px}
-  select,input[type=date]{
+  select,input[type=date],.search{
     appearance:none;background:#0a1120;color:var(--txt);border:1px solid var(--line);
     border-radius:10px;padding:10px 11px;font-size:14.5px;width:100%;min-height:42px;
+    font-family:inherit;
   }
   select:focus,input:focus{outline:2px solid #2b6cb0;outline-offset:1px}
   .range{display:flex;align-items:center;gap:10px;margin-top:12px}
@@ -47,12 +48,46 @@
   .stat b{color:var(--txt);font-size:15px;font-variant-numeric:tabular-nums}
   .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
   .btn{background:#16233a;border:1px solid var(--line);color:var(--dim);border-radius:999px;
-    padding:6px 12px;font-size:12.5px;cursor:pointer}
+    padding:6px 12px;font-size:12.5px;cursor:pointer;font-family:inherit}
   .btn[aria-pressed=true]{background:#1d3454;border-color:#2f5f97;color:#cfe6ff}
+  .btn.sm{padding:4px 10px;font-size:12px}
+
+  /* filter tree */
+  .fhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .ftitle{font-weight:650;font-size:14px;display:flex;align-items:center;gap:8px}
+  .factions{display:flex;gap:6px;flex-wrap:wrap}
+  #fbody{margin-top:10px}
+  #tree{margin-top:10px;max-height:360px;overflow:auto;padding-right:4px;
+    border-top:1px solid var(--line);padding-top:6px}
+  .node{display:flex;align-items:center;gap:8px;padding:5px 2px;border-radius:8px}
+  .node:hover{background:#16233a}
+  .node label{display:flex;align-items:center;gap:7px;flex:1;cursor:pointer;font-size:13.5px;min-width:0}
+  .node .zh{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .node .en{color:var(--dim2);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .node .cnt{color:var(--dim2);font-size:11.5px;margin-left:auto;flex:0 0 auto;font-variant-numeric:tabular-nums}
+  .lvl1{margin-top:4px}
+  .lvl1 label{font-size:14px;font-weight:650}
+  .lvl2{padding-left:16px}
+  .lvl3{padding-left:32px}
+  .lvl3 label{font-size:13px}
+  input[type=checkbox]{appearance:none;width:17px;height:17px;flex:0 0 auto;border:1.5px solid #3a4a6b;
+    border-radius:5px;background:#0a1120;position:relative;cursor:pointer}
+  input[type=checkbox]:checked{background:#2f7fe0;border-color:#2f7fe0}
+  input[type=checkbox]:checked::after{content:"";position:absolute;left:4.5px;top:1px;width:5px;height:9px;
+    border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  input[type=checkbox]:indeterminate{background:#22405f;border-color:#2f7fe0}
+  input[type=checkbox]:indeterminate::after{content:"";position:absolute;left:3px;top:6.5px;width:9px;height:2px;background:#cfe6ff}
+  .hidden{display:none !important}
+
+  /* results */
+  .ghead{margin:16px 0 8px;font-size:12.5px;color:var(--dim);display:flex;align-items:baseline;gap:8px;
+    border-bottom:1px solid var(--line);padding-bottom:6px}
+  .ghead b{color:var(--txt);font-size:13.5px;font-weight:650}
   .dest{background:linear-gradient(180deg,#131c2e 0%,#101827 100%);border:1px solid var(--line);
     border-radius:12px;padding:11px 12px;margin-bottom:8px}
   .dhead{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
   .dname{font-weight:650;font-size:15px}
+  .den{color:var(--dim);font-size:12px;margin-left:6px}
   .dcode{color:var(--dim2);font-size:11.5px;margin-left:6px;letter-spacing:.6px}
   .dmeta{color:var(--dim);font-size:12px;white-space:nowrap}
   .days{display:flex;gap:6px;margin-top:9px;overflow-x:auto;padding-bottom:2px}
@@ -71,8 +106,6 @@
   .empty{color:var(--dim);text-align:center;padding:34px 10px;border:1px dashed var(--line);border-radius:12px}
   footer{color:var(--dim2);font-size:11.5px;margin-top:18px;line-height:1.7}
   a{color:var(--accent)}
-  .warn{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.35);color:#ffc9c9;
-    border-radius:10px;padding:9px 11px;font-size:13px;margin-bottom:12px}
   @media(max-width:520px){ .day{flex:1 0 46px} body{padding:14px 10px 50px} }
 </style>
 </head>
@@ -82,7 +115,7 @@
     <h1>Asia Miles 直飛兌換雷達</h1>
     <span class="tag">CX 直飛 · 標準獎勵</span>
   </header>
-  <div class="sub" id="sub">揀日期，睇前後 ±3 日全港龍直飛目的地嘅商務／經濟艙兌換機位。</div>
+  <div class="sub">揀日期，睇前後 ±N 日所有國泰直飛目的地嘅兌換機位。</div>
 
   <div class="panel">
     <div class="row">
@@ -111,6 +144,21 @@
     </div>
   </div>
 
+  <div class="panel" id="filterPanel">
+    <div class="fhead">
+      <div class="ftitle">目的地篩選 <span class="tag" id="selCount">—</span></div>
+      <div class="factions">
+        <button class="btn sm" id="selAll">全選</button>
+        <button class="btn sm" id="selNone">全清</button>
+        <button class="btn sm" id="fToggle" aria-pressed="true">收起</button>
+      </div>
+    </div>
+    <div id="fbody">
+      <input id="fq" class="search" type="search" placeholder="搜尋城市／國家／代碼，例如 東京、Japan、NRT">
+      <div id="tree"></div>
+    </div>
+  </div>
+
   <div class="stats" id="stats"></div>
 
   <div class="toolbar">
@@ -128,25 +176,31 @@
 
   <footer>
     <div id="fresh">載入中…</div>
-    <div>資料來源：Cathay Pacific 公開獎勵座位日曆（每 180 日更新一次，每日 00:00 HKT 刷新）。只覆蓋 <b>國泰航空營運</b> 嘅直飛航班，不包括代碼共享或夥伴航空公司（例如 BA／QF／JL）。里程數為標準獎勵（Standard Award）單程最低值。</div>
+    <div>資料來源：Cathay Pacific 公開獎勵座位日曆（每日 00:00 HKT 更新，只覆蓋未來 180 日）。只計 <b>國泰航空營運</b> 嘅直飛航班，不包括代碼共享或夥伴航空公司（例如 BA／QF／JL）。里程為標準獎勵單程最低值。</div>
     <div>本工具與國泰航空／Asia Miles 無關；兌換前請以 <a href="https://www.cathaypacific.com/cx/en_HK/book-a-trip/redeem-flights.html" target="_blank" rel="noopener">官網</a> 為準。</div>
   </footer>
 </div>
 
 <script>
 const CABINS = {eco:"經濟", pey:"特選經濟", bus:"商務", fir:"頭等"};
+const CONT_ORDER = ["亞洲","歐洲","非洲","美洲","大洋洲"];
 const WD = ["日","一","二","三","四","五","六"];
+const SEL_KEY = "amr.selection.v1";
 const p2 = n => String(n).padStart(2,"0");
 
 let DATA = null;
-let idx = {};           // yyyymmdd -> index
-let view = {onlyAvail:true, sort:"days"};
+let idx = {};
+let selected = null;                                  // Set<code>
+let view = {onlyAvail:true, sort:"days", q:"", open:true};
 
 const $ = s => document.querySelector(s);
-
-function ymd(d){ return d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate(); }
-function parseYMD(s){ return new Date(+s.slice(0,4), +s.slice(4,6)-1, +s.slice(6,8)); }
-function fmtDay(s){ return `${p2(+s.slice(4,6))}/${p2(+s.slice(6,8))}`; }
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g,
+  c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ymd = d => d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
+const parseYMD = s => new Date(+s.slice(0,4), +s.slice(4,6)-1, +s.slice(6,8));
+const fmtDay = s => `${p2(+s.slice(4,6))}/${p2(+s.slice(6,8))}`;
+const contRank = c => { const i = CONT_ORDER.indexOf(c); return i<0 ? 99 : i; };
+const zhSort = (a,b) => a.localeCompare(b, "zh-Hant");
 
 async function boot(){
   try{
@@ -158,14 +212,15 @@ async function boot(){
     $("#results").innerHTML = `<div class="empty">讀唔到 data/avail.json。如果係第一次用，等 GitHub Actions 跑完就會有。</div>`;
     return;
   }
+  DATA.destinations.forEach(d=>{ d.cityZh = d.cityZh || d.city; d.countryZh = d.countryZh || d.country;
+                                 d.continent = d.continent || "其他"; });
   DATA.dates.forEach((d,i)=> idx[d]=i);
+  selected = loadSelection();
 
   const origins = [{code:DATA.hub, label:`香港 Hong Kong (${DATA.hub})`}];
-  DATA.destinations.forEach(d=>{
-    origins.push({code:d.code, label:`${d.city} ${d.country||""} (${d.code})`});
-  });
-  origins.sort((a,b)=> a.code===DATA.hub? -1 : b.code===DATA.hub? 1 : a.label.localeCompare(b.label));
-  $("#origin").innerHTML = origins.map(o=>`<option value="${o.code}">${o.label}</option>`).join("");
+  DATA.destinations.forEach(d=> origins.push({code:d.code, label:`${d.cityZh} ${d.city} (${d.code})`}));
+  origins.sort((a,b)=> a.code===DATA.hub ? -1 : b.code===DATA.hub ? 1 : a.label.localeCompare(b.label));
+  $("#origin").innerHTML = origins.map(o=>`<option value="${esc(o.code)}">${esc(o.label)}</option>`).join("");
 
   const first = DATA.dates[0], last = DATA.dates[DATA.dates.length-1];
   const inp = $("#date");
@@ -185,7 +240,20 @@ async function boot(){
   $("#fresh").textContent =
     `資料更新：${DATA.updateTime || DATA.generated}（香港時間）· 日曆覆蓋 ${first} – ${last}`;
 
+  buildTree();
   ["origin","date","cabin","span"].forEach(id=> $("#"+id).addEventListener("input", render));
+  $("#fq").addEventListener("input", e=>{ view.q = e.target.value.trim().toLowerCase(); buildTree(); });
+  $("#selAll").addEventListener("click", ()=>{
+    DATA.destinations.forEach(d=>selected.add(d.code)); saveSel(); buildTree(); render();
+  });
+  $("#selNone").addEventListener("click", ()=>{ selected.clear(); saveSel(); buildTree(); render(); });
+  $("#fToggle").addEventListener("click", e=>{
+    view.open = !view.open;
+    $("#fbody").classList.toggle("hidden", !view.open);
+    e.currentTarget.setAttribute("aria-pressed", view.open);
+    e.currentTarget.textContent = view.open ? "收起" : "展開";
+  });
+  $("#tree").addEventListener("change", onTreeChange);
   $("#onlyAvail").addEventListener("click", e=>{
     view.onlyAvail = !view.onlyAvail;
     e.currentTarget.setAttribute("aria-pressed", view.onlyAvail);
@@ -193,13 +261,90 @@ async function boot(){
     render();
   });
   $("#sortBy").addEventListener("click", e=>{
-    view.sort = view.sort==="days" ? "city" : "days";
-    e.currentTarget.textContent = view.sort==="days" ? "排序：有位日數" : "排序：城市名";
+    const order = ["days","region","city"];
+    view.sort = order[(order.indexOf(view.sort)+1) % order.length];
+    e.currentTarget.textContent = "排序：" + ({days:"有位日數", region:"洲·國家", city:"城市名"})[view.sort];
     render();
   });
   render();
 }
 
+function loadSelection(){
+  const all = new Set(DATA.destinations.map(d=>d.code));
+  try{
+    const raw = JSON.parse(localStorage.getItem(SEL_KEY) || "null");
+    if(Array.isArray(raw)) return new Set(raw.filter(c=> all.has(c)));
+  }catch(e){}
+  return all;
+}
+function saveSel(){
+  try{ localStorage.setItem(SEL_KEY, JSON.stringify([...selected])); }catch(e){}
+}
+
+/* ---------- filter tree: 洲 → 國家 → 目的地 ---------- */
+function buildTree(){
+  const groups = new Map();
+  DATA.destinations.forEach(d=>{
+    if(view.q && ![d.cityZh, d.city, d.code, d.countryZh, d.country]
+       .some(v=> (v||"").toLowerCase().includes(view.q))) return;
+    if(!groups.has(d.continent)) groups.set(d.continent, new Map());
+    const cm = groups.get(d.continent);
+    if(!cm.has(d.countryZh)) cm.set(d.countryZh, []);
+    cm.get(d.countryZh).push(d);
+  });
+
+  const conts = [...groups.keys()].sort((a,b)=> contRank(a)-contRank(b) || zhSort(a,b));
+  const html = conts.map(cont=>{
+    const cm = groups.get(cont);
+    const all = [...cm.values()].flat();
+    const codes = all.map(d=>d.code);
+    const selN = codes.filter(c=>selected.has(c)).length;
+    const cbox = `<input type="checkbox" data-cont="${esc(cont)}"${selN===codes.length?" checked":""}${selN>0&&selN<codes.length?' data-indet="1"':""}>`;
+    const countries = [...cm.keys()]
+      .sort((a,b)=> (cm.get(a)[0].country||"").localeCompare(cm.get(b)[0].country||""))
+      .map(country=>{
+      const list = cm.get(country).sort((a,b)=> (a.city||"").localeCompare(b.city||""));
+      const cc = list.map(d=>d.code);
+      const sn = cc.filter(c=>selected.has(c)).length;
+      const ccbox = `<input type="checkbox" data-country="${esc(cont)}|${esc(country)}"${sn===cc.length?" checked":""}${sn>0&&sn<cc.length?' data-indet="1"':""}>`;
+      const items = list.map(d=>`<div class="node lvl3">
+        <input type="checkbox" data-code="${esc(d.code)}"${selected.has(d.code)?" checked":""}>
+        <label><span class="zh">${esc(d.cityZh)}</span><span class="en">${esc(d.city)} · ${esc(d.code)}</span></label>
+      </div>`).join("");
+      return `<div class="node lvl2">${ccbox}
+        <label><span class="zh">${esc(country)}</span><span class="en">${esc(list[0].country)}</span>
+        <span class="cnt">${sn}/${cc.length}</span></label></div>${items}`;
+    }).join("");
+    return `<div class="node lvl1">${cbox}
+      <label><span class="zh">${esc(cont)}</span><span class="en">${esc(all[0].continentEn||"")}</span>
+      <span class="cnt">${selN}/${codes.length}</span></label></div>${countries}`;
+  }).join("");
+
+  $("#tree").innerHTML = html || `<div class="empty" style="padding:18px">冇符合「${esc(view.q)}」嘅目的地。</div>`;
+  document.querySelectorAll("#tree input[data-indet]").forEach(el=> el.indeterminate = true);
+  $("#selCount").textContent = `${selected.size} / ${DATA.destinations.length}`;
+}
+
+function onTreeChange(e){
+  const el = e.target;
+  if(el.dataset.code){
+    el.checked ? selected.add(el.dataset.code) : selected.delete(el.dataset.code);
+  }else if(el.dataset.country){
+    const [cont, country] = el.dataset.country.split("|");
+    DATA.destinations.filter(d=> d.continent===cont && d.countryZh===country)
+      .forEach(d=> el.checked ? selected.add(d.code) : selected.delete(d.code));
+  }else if(el.dataset.cont){
+    DATA.destinations.filter(d=> d.continent===el.dataset.cont)
+      .forEach(d=> el.checked ? selected.add(d.code) : selected.delete(d.code));
+  }else return;
+  saveSel();
+  const scroll = $("#tree").scrollTop;
+  buildTree();
+  $("#tree").scrollTop = scroll;
+  render();
+}
+
+/* ---------- results ---------- */
 function windowDates(center, span){
   const c = parseYMD(center), out = [];
   for(let k=-span;k<=span;k++){
@@ -215,11 +360,13 @@ function render(){
   const cabin = $("#cabin").value;
   const span = +$("#span").value;
   $("#spanLbl").textContent = `±${span} 日`;
+  $("#filterPanel").classList.toggle("hidden", origin !== DATA.hub);
 
   const dv = $("#date").value;
   if(!dv) return;
   history.replaceState(null, "",
     "?" + new URLSearchParams({origin, date:dv, cabin, span:String(span)}).toString());
+
   const center = dv.replaceAll("-","");
   const days = windowDates(center, span);
   const inRange = days.filter(d=> d in idx);
@@ -228,40 +375,36 @@ function render(){
   if(origin === DATA.hub){
     const series = DATA.cabins[cabin] || {};
     DATA.destinations.forEach(d=>{
+      if(!selected.has(d.code)) return;
       const s = series[d.code];
       if(!s) return;
       const cells = days.map(day=>{
         const i = idx[day];
         return i===undefined ? null : (s[i]==="." ? "-" : s[i]);
       });
-      const cnt = cells.filter(c=> c==="H"||c==="L").length;
-      const best = cells.indexOf("H")>=0 ? "H" : cells.indexOf("L")>=0 ? "L" : null;
-      rows.push({...d, cells, cnt, best,
+      rows.push({...d, cells, cnt: cells.filter(c=> c==="H"||c==="L").length,
         miles: DATA.miles?.[d.code]?.[cabin] ?? null});
     });
   }else{
     // CX network is hub-and-spoke: from a station the only nonstop is Hong Kong
     const s = (DATA.return[cabin]||{})[origin];
-    const dest = {code:DATA.hub, city:"香港", country:"Hong Kong"};
     const cells = days.map(day=>{
       const i = idx[day];
       if(i===undefined || !s) return null;
       return s[i]==="." ? "-" : s[i];
     });
-    const cnt = cells.filter(c=> c==="H"||c==="L").length;
-    rows.push({...dest, cells, cnt,
-      best: cells.includes("H") ? "H" : cells.includes("L") ? "L" : null,
+    rows.push({code:DATA.hub, city:"Hong Kong", cityZh:"香港", country:"Hong Kong",
+      countryZh:"香港", continent:"亞洲", continentEn:"Asia", cells,
+      cnt: cells.filter(c=> c==="H"||c==="L").length,
       miles: DATA.miles?.[origin]?.[cabin] ?? null});
   }
 
   const shown = rows.filter(r=> !view.onlyAvail || r.cnt>0);
-  if(view.sort === "days") shown.sort((a,b)=> b.cnt-a.cnt || a.city.localeCompare(b.city));
-  else shown.sort((a,b)=> a.city.localeCompare(b.city));
+  const totalSel = origin===DATA.hub ? selected.size : 1;
 
-  const totalDest = origin===DATA.hub ? DATA.destinations.length : 1;
   $("#stats").innerHTML = `
     <div class="stat"><b>${shown.filter(r=>r.cnt>0).length}</b> 個目的地有位</div>
-    <div class="stat"><b>${totalDest}</b> 條直飛航線</div>
+    <div class="stat"><b>${totalSel}</b> 個已選目的地</div>
     <div class="stat"><b>${inRange.length}</b> 日喺日曆內</div>
     <div class="stat">${CABINS[cabin]} · ${origin}</div>`;
 
@@ -270,10 +413,7 @@ function render(){
     return;
   }
 
-  const note = origin === DATA.hub ? "" :
-    `<div class="sub" style="margin:0 0 10px">國泰以香港為樞紐：由 ${origin} 出發嘅國泰直飛航線只有香港，所以這裡只顯示一條。</div>`;
-
-  $("#results").innerHTML = note + (shown.length ? shown.map(r=>{
+  const card = r => {
     const chips = r.cells.map((c,i)=>{
       const day = days[i];
       if(c===null) return `<div class="day"><span class="w">–</span><span class="d">--/--</span></div>`;
@@ -286,14 +426,47 @@ function render(){
         <span class="w">${mark}</span></div>`;
     }).join("");
     const miles = r.miles ? `<span class="miles">${r.miles.toLocaleString()} 里</span>` : "";
+    const best = r.cells.includes("H") ? "H" : r.cells.includes("L") ? "L" : null;
     return `<div class="dest">
       <div class="dhead">
-        <div><span class="dname">${r.city}</span><span class="dcode">${r.code}</span></div>
-        <div class="dmeta">${r.cnt>0 ? `<b style="color:${r.best==="H"?"#7ff0ac":"#ffd166"}">${r.cnt} 日有位</b>` : "冇位"} ${miles}</div>
+        <div><span class="dname">${esc(r.cityZh)}</span><span class="den">${esc(r.city)}</span><span class="dcode">${esc(r.code)}</span></div>
+        <div class="dmeta">${r.cnt>0 ? `<b style="color:${best==="H"?"#7ff0ac":"#ffd166"}">${r.cnt} 日有位</b>` : "冇位"} ${miles}</div>
       </div>
       <div class="days">${chips}</div>
     </div>`;
-  }).join("") : `<div class="empty">呢個 ±${span} 日窗口內，${CABINS[cabin]} 冇任何直飛目的地有位。<br>試下改日期、加大範圍，或者轉艙等。</div>`);
+  };
+
+  const note = origin === DATA.hub ? "" :
+    `<div class="sub" style="margin:0 0 10px">國泰以香港為樞紐：由 ${esc(origin)} 出發嘅國泰直飛航線只有香港，所以這裡只顯示一條。</div>`;
+
+  let body;
+  if(!shown.length){
+    body = (origin === DATA.hub && selected.size === 0)
+      ? `<div class="empty">你未揀任何目的地 — 去上面「目的地篩選」剔返啲城市。</div>`
+      : `<div class="empty">呢個 ±${span} 日窗口內，${CABINS[cabin]} 冇任何已選目的地有位。<br>試下改日期、加大範圍、加選多啲目的地，或者轉艙等。</div>`;
+  }else if(view.sort === "city"){
+    shown.sort((a,b)=> (a.city||"").localeCompare(b.city||""));
+    body = shown.map(card).join("");
+  }else if(view.sort === "region"){
+    shown.sort((a,b)=> contRank(a.continent)-contRank(b.continent)
+      || (a.country||"").localeCompare(b.country||"") || (a.city||"").localeCompare(b.city||""));
+    let out = "", lastCountry = null;
+    shown.forEach(r=>{
+      if(r.countryZh !== lastCountry){
+        lastCountry = r.countryZh;
+        const n = shown.filter(x=> x.continent===r.continent && x.countryZh===r.countryZh).length;
+        out += `<div class="ghead"><b>${esc(r.countryZh)}</b><span>${esc(r.country)} · ${esc(r.continent)}</span>
+          <span style="margin-left:auto">${n} 個目的地</span></div>`;
+      }
+      out += card(r);
+    });
+    body = out;
+  }else{
+    shown.sort((a,b)=> b.cnt-a.cnt || (a.city||"").localeCompare(b.city||""));
+    body = shown.map(card).join("");
+  }
+
+  $("#results").innerHTML = note + body;
 }
 
 boot();
