@@ -174,6 +174,14 @@ async function boot(){
   const def = DATA.dates[Math.min(30, DATA.dates.length-1)];
   inp.value = `${def.slice(0,4)}-${def.slice(4,6)}-${def.slice(6,8)}`;
 
+  // shareable state: ?origin=HKG&date=2027-04-25&cabin=bus&span=3
+  const q = new URLSearchParams(location.search);
+  if(q.get("origin") && origins.some(o=>o.code===q.get("origin"))) $("#origin").value = q.get("origin");
+  if(q.get("cabin") && CABINS[q.get("cabin")]) $("#cabin").value = q.get("cabin");
+  if(q.get("span") !== null && q.get("span") !== "") $("#span").value = Math.max(0, Math.min(7, +q.get("span")));
+  if(q.get("date") && /^\d{4}-\d{2}-\d{2}$/.test(q.get("date")) &&
+     q.get("date") >= inp.min && q.get("date") <= inp.max) inp.value = q.get("date");
+
   $("#fresh").textContent =
     `資料更新：${DATA.updateTime || DATA.generated}（香港時間）· 日曆覆蓋 ${first} – ${last}`;
 
@@ -210,6 +218,8 @@ function render(){
 
   const dv = $("#date").value;
   if(!dv) return;
+  history.replaceState(null, "",
+    "?" + new URLSearchParams({origin, date:dv, cabin, span:String(span)}).toString());
   const center = dv.replaceAll("-","");
   const days = windowDates(center, span);
   const inRange = days.filter(d=> d in idx);
