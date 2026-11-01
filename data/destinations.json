@@ -1,0 +1,559 @@
+{
+ "hub": "HKG",
+ "count": 79,
+ "destinations": [
+  {
+   "code": "ADL",
+   "city": "Adelaide",
+   "country": "Australia",
+   "airport": "Adelaide Airport",
+   "notes": ""
+  },
+  {
+   "code": "BNE",
+   "city": "Brisbane",
+   "country": "Australia",
+   "airport": "Brisbane Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "MEL",
+   "city": "Melbourne",
+   "country": "Australia",
+   "airport": "Melbourne Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "PER",
+   "city": "Perth",
+   "country": "Australia",
+   "airport": "Perth Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "SYD",
+   "city": "Sydney",
+   "country": "Australia",
+   "airport": "Sydney Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "DAC",
+   "city": "Dhaka",
+   "country": "Bangladesh",
+   "airport": "Hazrat Shahjalal International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "BRU",
+   "city": "Brussels",
+   "country": "Belgium",
+   "airport": "Brussels Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "KTI",
+   "city": "Phnom Penh",
+   "country": "Cambodia",
+   "airport": "Phnom Penh International Airport",
+   "notes": ""
+  },
+  {
+   "code": "YYZ",
+   "city": "Toronto",
+   "country": "Canada",
+   "airport": "Toronto Pearson International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "YVR",
+   "city": "Vancouver",
+   "country": "Canada",
+   "airport": "Vancouver International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "PEK",
+   "city": "Beijing",
+   "country": "China",
+   "airport": "Beijing Capital International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CTU",
+   "city": "Chengdu",
+   "country": "China",
+   "airport": "Chengdu Shuangliu International Airport",
+   "notes": "Passenger  + Cargo"
+  },
+  {
+   "code": "CKG",
+   "city": "Chongqing",
+   "country": "China",
+   "airport": "Chongqing Jiangbei International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "FOC",
+   "city": "Fuzhou",
+   "country": "China",
+   "airport": "Fuzhou Changle International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CAN",
+   "city": "Guangzhou",
+   "country": "China",
+   "airport": "Guangzhou Baiyun International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "HAK",
+   "city": "Haikou",
+   "country": "China",
+   "airport": "Haikou Meilan International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "HGH",
+   "city": "Hangzhou",
+   "country": "China",
+   "airport": "Hangzhou Xiaoshan International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "NKG",
+   "city": "Nanjing",
+   "country": "China",
+   "airport": "Nanjing Lukou International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "NGB",
+   "city": "Ningbo",
+   "country": "China",
+   "airport": "Ningbo Lishe International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "TAO",
+   "city": "Qingdao",
+   "country": "China",
+   "airport": "Qingdao Jiaodong International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "SHA",
+   "city": "Shanghai",
+   "country": "China",
+   "airport": "Shanghai Hongqiao International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "PVG",
+   "city": "Shanghai",
+   "country": "China",
+   "airport": "Shanghai Pudong International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "WNZ",
+   "city": "Wenzhou",
+   "country": "China",
+   "airport": "Wenzhou Yongqiang International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "WUH",
+   "city": "Wuhan",
+   "country": "China",
+   "airport": "Wuhan Tianhe International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "XIY",
+   "city": "Xi'an",
+   "country": "China",
+   "airport": "Xi'an Xianyang International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "XMN",
+   "city": "Xiamen",
+   "country": "China",
+   "airport": "Xiamen Gaoqi International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "CGO",
+   "city": "Zhengzhou",
+   "country": "China",
+   "airport": "Zhengzhou Xinzheng International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "CDG",
+   "city": "Paris",
+   "country": "France",
+   "airport": "Charles de Gaulle Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "FRA",
+   "city": "Frankfurt",
+   "country": "Germany",
+   "airport": "Frankfurt Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "MUC",
+   "city": "Munich",
+   "country": "Germany",
+   "airport": "Munich Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "BLR",
+   "city": "Bengaluru",
+   "country": "India",
+   "airport": "Kempegowda International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "MAA",
+   "city": "Chennai",
+   "country": "India",
+   "airport": "Chennai International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "DEL",
+   "city": "Delhi",
+   "country": "India",
+   "airport": "Indira Gandhi International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "HYD",
+   "city": "Hyderabad",
+   "country": "India",
+   "airport": "Rajiv Gandhi International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "BOM",
+   "city": "Mumbai",
+   "country": "India",
+   "airport": "Chhatrapati Shivaji Maharaj International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "DPS",
+   "city": "Denpasar",
+   "country": "Indonesia",
+   "airport": "Ngurah Rai International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CGK",
+   "city": "Jakarta",
+   "country": "Indonesia",
+   "airport": "Soekarno–Hatta International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "SUB",
+   "city": "Surabaya",
+   "country": "Indonesia",
+   "airport": "Juanda International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "MXP",
+   "city": "Milan",
+   "country": "Italy",
+   "airport": "Milan Malpensa Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "FCO",
+   "city": "Rome",
+   "country": "Italy",
+   "airport": "Rome Fiumicino Airport",
+   "notes": ""
+  },
+  {
+   "code": "FUK",
+   "city": "Fukuoka",
+   "country": "Japan",
+   "airport": "Fukuoka Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "NGO",
+   "city": "Nagoya",
+   "country": "Japan",
+   "airport": "Chubu Centrair International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "KIX",
+   "city": "Osaka",
+   "country": "Japan",
+   "airport": "Kansai International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "CTS",
+   "city": "Sapporo",
+   "country": "Japan",
+   "airport": "New Chitose Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "HND",
+   "city": "Tokyo",
+   "country": "Japan",
+   "airport": "Haneda Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "NRT",
+   "city": "Tokyo",
+   "country": "Japan",
+   "airport": "Narita International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "KUL",
+   "city": "Kuala Lumpur",
+   "country": "Malaysia",
+   "airport": "Kuala Lumpur International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "PEN",
+   "city": "Penang",
+   "country": "Malaysia",
+   "airport": "Penang International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "KTM",
+   "city": "Kathmandu",
+   "country": "Nepal",
+   "airport": "Tribhuvan International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "AMS",
+   "city": "Amsterdam",
+   "country": "Netherlands",
+   "airport": "Amsterdam Airport Schiphol",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "AKL",
+   "city": "Auckland",
+   "country": "New Zealand",
+   "airport": "Auckland Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CHC",
+   "city": "Christchurch",
+   "country": "New Zealand",
+   "airport": "Christchurch Airport",
+   "notes": ""
+  },
+  {
+   "code": "CEB",
+   "city": "Cebu",
+   "country": "Philippines",
+   "airport": "Mactan–Cebu International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "MNL",
+   "city": "Manila",
+   "country": "Philippines",
+   "airport": "Ninoy Aquino International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "RUH",
+   "city": "Riyadh",
+   "country": "Saudi Arabia",
+   "airport": "King Khalid International Airport",
+   "notes": ""
+  },
+  {
+   "code": "SIN",
+   "city": "Singapore",
+   "country": "Singapore",
+   "airport": "Changi Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "JNB",
+   "city": "Johannesburg",
+   "country": "South Africa",
+   "airport": "O. R. Tambo International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "ICN",
+   "city": "Seoul",
+   "country": "South Korea",
+   "airport": "Gimpo International Airport",
+   "notes": ""
+  },
+  {
+   "code": "BCN",
+   "city": "Barcelona",
+   "country": "Spain",
+   "airport": "Josep Tarradellas Barcelona–El Prat Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "MAD",
+   "city": "Madrid",
+   "country": "Spain",
+   "airport": "Adolfo Suárez Madrid–Barajas Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "CMB",
+   "city": "Colombo",
+   "country": "Sri Lanka",
+   "airport": "Bandaranaike International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "ZRH",
+   "city": "Zurich",
+   "country": "Switzerland",
+   "airport": "Zurich Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "KHH",
+   "city": "Kaohsiung",
+   "country": "Taiwan",
+   "airport": "Kaohsiung International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "TPE",
+   "city": "Taipei",
+   "country": "Taiwan",
+   "airport": "Taoyuan International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "BKK",
+   "city": "Bangkok",
+   "country": "Thailand",
+   "airport": "Don Mueang International Airport",
+   "notes": ""
+  },
+  {
+   "code": "HKT",
+   "city": "Phuket",
+   "country": "Thailand",
+   "airport": "Phuket International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "DXB",
+   "city": "Dubai",
+   "country": "United Arab Emirates",
+   "airport": "Dubai International Airport",
+   "notes": ""
+  },
+  {
+   "code": "LHR",
+   "city": "London",
+   "country": "United Kingdom",
+   "airport": "Heathrow Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "MAN",
+   "city": "Manchester",
+   "country": "United Kingdom",
+   "airport": "Manchester Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "BOS",
+   "city": "Boston",
+   "country": "United States",
+   "airport": "Logan International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "ORD",
+   "city": "Chicago",
+   "country": "United States",
+   "airport": "O'Hare International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "DFW",
+   "city": "Dallas",
+   "country": "United States",
+   "airport": "Dallas Fort Worth International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "LAX",
+   "city": "Los Angeles",
+   "country": "United States",
+   "airport": "Los Angeles International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "JFK",
+   "city": "New York City",
+   "country": "United States",
+   "airport": "John F. Kennedy International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "SFO",
+   "city": "San Francisco",
+   "country": "United States",
+   "airport": "San Francisco International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "SEA",
+   "city": "Seattle",
+   "country": "United States",
+   "airport": "Seattle–Tacoma International Airport",
+   "notes": "Passenger"
+  },
+  {
+   "code": "HAN",
+   "city": "Hanoi",
+   "country": "Vietnam",
+   "airport": "Noi Bai International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "SGN",
+   "city": "Ho Chi Minh City",
+   "country": "Vietnam",
+   "airport": "Tan Son Nhat International Airport",
+   "notes": "Passenger + cargo"
+  },
+  {
+   "code": "ALA",
+   "city": "Almaty",
+   "country": "rowspan=2|Kazakhstan",
+   "airport": "Almaty International Airport",
+   "notes": "}}"
+  }
+ ]
+}
