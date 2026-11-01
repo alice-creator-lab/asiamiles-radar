@@ -163,7 +163,7 @@
 
   <div class="toolbar">
     <button class="btn" id="onlyAvail" aria-pressed="true">只顯示有位</button>
-    <button class="btn" id="sortBy">排序：有位日數</button>
+    <button class="btn" id="sortBy">排序：篩選次序</button>
   </div>
 
   <div class="legend">
@@ -191,7 +191,7 @@ const p2 = n => String(n).padStart(2,"0");
 let DATA = null;
 let idx = {};
 let selected = null;                                  // Set<code>
-let view = {onlyAvail:true, sort:"days", q:"", open:true};
+let view = {onlyAvail:true, sort:"tree", q:"", open:true};
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s==null?"":s).replace(/[&<>"']/g,
@@ -200,6 +200,9 @@ const ymd = d => d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
 const parseYMD = s => new Date(+s.slice(0,4), +s.slice(4,6)-1, +s.slice(6,8));
 const fmtDay = s => `${p2(+s.slice(4,6))}/${p2(+s.slice(6,8))}`;
 const contRank = c => { const i = CONT_ORDER.indexOf(c); return i<0 ? 99 : i; };
+// one comparator for both the filter tree and the result list: 洲 → 國家 → 城市
+const byFilterOrder = (a,b) => contRank(a.continent)-contRank(b.continent)
+  || (a.country||"").localeCompare(b.country||"") || (a.city||"").localeCompare(b.city||"");
 const zhSort = (a,b) => a.localeCompare(b, "zh-Hant");
 
 async function boot(){
@@ -261,9 +264,9 @@ async function boot(){
     render();
   });
   $("#sortBy").addEventListener("click", e=>{
-    const order = ["days","region","city"];
+    const order = ["tree","days","city"];
     view.sort = order[(order.indexOf(view.sort)+1) % order.length];
-    e.currentTarget.textContent = "排序：" + ({days:"有位日數", region:"洲·國家", city:"城市名"})[view.sort];
+    e.currentTarget.textContent = "排序：" + ({tree:"篩選次序", days:"有位日數", city:"城市名"})[view.sort];
     render();
   });
   render();
@@ -447,9 +450,8 @@ function render(){
   }else if(view.sort === "city"){
     shown.sort((a,b)=> (a.city||"").localeCompare(b.city||""));
     body = shown.map(card).join("");
-  }else if(view.sort === "region"){
-    shown.sort((a,b)=> contRank(a.continent)-contRank(b.continent)
-      || (a.country||"").localeCompare(b.country||"") || (a.city||"").localeCompare(b.city||""));
+  }else if(view.sort === "tree"){
+    shown.sort(byFilterOrder);
     let out = "", lastCountry = null;
     shown.forEach(r=>{
       if(r.countryZh !== lastCountry){
