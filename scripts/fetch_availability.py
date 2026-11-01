@@ -18,11 +18,20 @@ Usage: python3 scripts/fetch_availability.py [--concurrency 6] [--days 180]
 """
 import argparse
 import concurrent.futures
+import datetime
 import json
 import sys
 import time
 import urllib.error
 import urllib.request
+from zoneinfo import ZoneInfo
+
+HK_TZ = ZoneInfo("Asia/Hong_Kong")
+
+
+def hk_now():
+    """Current date in Hong Kong — GitHub runners are UTC, the calendar is HKT."""
+    return datetime.datetime.now(HK_TZ).date()
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
@@ -78,11 +87,10 @@ def main():
     hub = dests["hub"]
     codes = [d["code"] for d in dests["destinations"]]
 
-    today = time.localtime()
-    start = time.strftime("%Y%m%d", today)
-    axis = []
-    for i in range(args.days):
-        axis.append(time.strftime("%Y%m%d", time.localtime(time.time() + i * 86400)))
+    today = hk_now()
+    start = today.strftime("%Y%m%d")
+    axis = [(today + datetime.timedelta(days=i)).strftime("%Y%m%d")
+            for i in range(args.days)]
     end = axis[-1]
 
     jobs = []
