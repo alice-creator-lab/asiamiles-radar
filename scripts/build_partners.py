@@ -74,6 +74,15 @@ def fetch(dest, carrier, timeout=25, retries=2):
             if e.code in (403, 429, 503):
                 time.sleep(20 + attempt * 20)
                 continue
+            # "this carrier sells no award on this OD" arrives as HTTP 500 + ERR_AFR_001,
+            # which is an answer, not a fault — do not report it as a failure
+            try:
+                body = json.loads(e.read().decode("utf-8", "replace"))
+                codes = [x.get("code") for x in body.get("errors", [])]
+            except Exception:                                     # noqa: BLE001
+                codes = []
+            if "ERR_AFR_001" in codes:
+                return None, "nochart"
             return None, f"HTTP{e.code}"
         except Exception as e:                                    # noqa: BLE001
             if attempt == retries:
@@ -100,6 +109,7 @@ def main():
         with open(args.cache, encoding="utf-8") as f:
             cache = json.load(f)
     by_dest = {k: v for k, v in cache.items() if v}
+    nochart = 0
     failures = 0
     total = len(dests) * len(CANDIDATES)
     n = 0
@@ -116,6 +126,8 @@ def main():
                 consecutive_blocked = 0
                 if any(v for v in miles.values()):
                     row[carrier] = miles
+            elif err == "nochart":
+                nochart += 1
             elif err:
                 failures += 1
                 consecutive_blocked = consecutive_blocked + 1 if err == "blocked" else 0
@@ -149,8 +161,9 @@ def main():
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
 
+    out["noChart"] = nochart
     print(f"wrote {args.out}: {len(by_dest)} destinations, carriers={used}, "
-          f"failures={failures}")
+          f"no-chart answers={nochart}, real failures={failures}")
     for c in used:
         print(f"  {c}: {out['carriers'][c]['destinations']} dests")
     return 0
