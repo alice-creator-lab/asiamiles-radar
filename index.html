@@ -227,11 +227,22 @@ const fmtDay = s => `${p2(+s.slice(4,6))}/${p2(+s.slice(6,8))}`;
 // answers for zone-based/connecting itineraries too (e.g. LATAM on HKG-YYZ), so
 // without this the badges would name airlines that never touch HKG.
 const HKG_CARRIERS = new Set(["CX","BA","QF","JL","AY","QR","MH","AA","CA","ZH","NZ","GA","PG","RJ","UL","AT","IB","WY"]);
+// A partner is only listed on its own gateways: the chart endpoint also answers for
+// through-fares, so without this "BA" showed up on Cebu and Haikou, which BA never flies.
+const PARTNER_GATEWAY = {
+  BA:["LHR"], QF:["SYD","MEL","BNE","PER"], JL:["NRT","HND","KIX","CTS","FUK","NGO"],
+  AY:["HEL"], QR:["DOH"], MH:["KUL"], AA:["LAX","DFW"], CA:["PEK","PVG","CTU","DLC"],
+  ZH:["SZX"], NZ:["AKL"], GA:["CGK","DPS"]
+};
 function destCarriers(code){
   const p = PART && PART.byDest ? PART.byDest[code] : null;
   if(!p) return {CX: DATA.miles?.[code] || {}};
   const out = {};
-  Object.keys(p).forEach(c=>{ if(HKG_CARRIERS.has(c)) out[c] = p[c]; });
+  Object.keys(p).forEach(c=>{
+    if(!HKG_CARRIERS.has(c)) return;
+    if(c !== "CX" && !(PARTNER_GATEWAY[c] || []).includes(code)) return;
+    out[c] = p[c];
+  });
   if(!out.CX && DATA.miles?.[code]) out.CX = DATA.miles[code];
   return out;
 }
