@@ -2,7 +2,8 @@ name: Refresh award availability
 
 on:
   schedule:
-    - cron: "5 16 * * *"   # 00:05 HKT, just after Cathay's daily calendar refresh
+    - cron: "5 16 * * *"    # 00:05 HKT daily — just after Cathay's calendar refresh
+    - cron: "30 16 * * 0"   # Sunday 00:30 HKT — partner carrier/miles table
   workflow_dispatch:
 
 permissions:
@@ -14,8 +15,9 @@ concurrency:
 
 jobs:
   refresh:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '5 16 * * *'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
 
@@ -23,8 +25,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      # concurrency stays low on purpose: the API sits behind Akamai and a
+      # burst of parallel calls gets the runner IP 403'd for a minute or two
       - name: Fetch availability snapshot
-        run: python3 scripts/fetch_availability.py --concurrency 6
+        run: python3 scripts/fetch_availability.py --concurrency 4
 
       - name: Commit snapshot if changed
         run: |
@@ -35,5 +39,32 @@ jobs:
             echo "snapshot unchanged"
           else
             git commit -m "chore: refresh availability $(date -u +%F)"
+            git push
+          fi
+
+  partners:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '30 16 * * 0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # serial with a ~1s gap: ~1,200 one-route probes, deliberately unhurried
+      - name: Probe Asia Miles partner carriers + charts
+        run: python3 scripts/build_partners.py --delay 1.0
+
+      - name: Commit partner table if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/partners.json
+          if git diff --staged --quiet; then
+            echo "partner table unchanged"
+          else
+            git commit -m "chore: refresh partner carriers $(date -u +%F)"
             git push
           fi

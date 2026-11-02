@@ -1,0 +1,117 @@
+{
+ "generated": "TEST",
+ "hub": "HKG",
+ "candidates": [
+  "AA",
+  "AS",
+  "BA",
+  "CX",
+  "JL",
+  "QF"
+ ],
+ "carriers": {
+  "AA": {
+   "name": "American Airlines",
+   "nameZh": "美國航空",
+   "destinations": 1
+  },
+  "AS": {
+   "name": "Alaska Airlines",
+   "nameZh": "阿拉斯加航空",
+   "destinations": 1
+  },
+  "BA": {
+   "name": "British Airways",
+   "nameZh": "英國航空",
+   "destinations": 1
+  },
+  "CX": {
+   "name": "Cathay Pacific",
+   "nameZh": "國泰航空",
+   "destinations": 5
+  },
+  "JL": {
+   "name": "Japan Airlines",
+   "nameZh": "日本航空",
+   "destinations": 1
+  },
+  "QF": {
+   "name": "Qantas",
+   "nameZh": "澳洲航空",
+   "destinations": 1
+  }
+ },
+ "byDest": {
+  "LHR": {
+   "CX": {
+    "eco": 27000,
+    "pey": 52000,
+    "bus": 91000,
+    "fir": 125000
+   },
+   "BA": {
+    "eco": 40000,
+    "pey": 55000,
+    "bus": 93000,
+    "fir": 135000
+   }
+  },
+  "SYD": {
+   "CX": {
+    "eco": 20000,
+    "pey": 39000,
+    "bus": 60000,
+    "fir": 90000
+   },
+   "QF": {
+    "eco": 27000,
+    "pey": 43000,
+    "bus": 63000,
+    "fir": 100000
+   }
+  },
+  "NRT": {
+   "CX": {
+    "eco": 13000,
+    "pey": 23000,
+    "bus": 33000,
+    "fir": 50000
+   },
+   "JL": {
+    "eco": 17500,
+    "pey": 0,
+    "bus": 37000,
+    "fir": 60000
+   }
+  },
+  "LAX": {
+   "CX": {
+    "eco": 27000,
+    "pey": 52000,
+    "bus": 91000,
+    "fir": 125000
+   },
+   "AA": {
+    "eco": 40000,
+    "pey": 55000,
+    "bus": 93000,
+    "fir": 135000
+   }
+  },
+  "SFO": {
+   "CX": {
+    "eco": 27000,
+    "pey": 52000,
+    "bus": 91000,
+    "fir": 125000
+   },
+   "AS": {
+    "eco": 40000,
+    "pey": 0,
+    "bus": 93000,
+    "fir": 135000
+   }
+  }
+ },
+ "failures": 0
+}

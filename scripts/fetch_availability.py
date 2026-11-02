@@ -48,12 +48,19 @@ RETRIES = 3
 
 
 def get_json(url, timeout=45):
+    """Fetch JSON, backing off hard on Akamai 403/429 (= short IP block)."""
     last = None
     for attempt in range(RETRIES):
         try:
             req = urllib.request.Request(url, headers=HEADERS)
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 return json.load(r)
+        except urllib.error.HTTPError as e:                       # noqa: PERF203
+            last = e
+            if e.code in (403, 429, 503):
+                time.sleep(30 * (attempt + 1))    # a burst gets the IP blocked
+            else:
+                time.sleep(1.5 * (attempt + 1))
         except Exception as e:  # noqa: BLE001
             last = e
             time.sleep(1.5 * (attempt + 1))

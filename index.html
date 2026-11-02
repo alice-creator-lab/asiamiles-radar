@@ -78,6 +78,23 @@
   input[type=checkbox]:indeterminate{background:#22405f;border-color:#2f7fe0}
   input[type=checkbox]:indeterminate::after{content:"";position:absolute;left:3px;top:6.5px;width:9px;height:2px;background:#cfe6ff}
   .hidden{display:none !important}
+  .cbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px;
+    padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .clabel{font-size:11.5px;color:var(--dim);letter-spacing:.4px;margin-right:2px}
+  .chip{background:#0d1626;border:1px solid var(--line);color:var(--dim);border-radius:999px;
+    padding:4px 9px;font-size:12px;cursor:pointer;font-family:inherit;display:inline-flex;
+    align-items:center;gap:5px}
+  .chip[aria-pressed=true]{background:#1d3454;border-color:#2f5f97;color:#cfe6ff}
+  .chip .n{font-size:10.5px;color:var(--dim2);font-variant-numeric:tabular-nums}
+  .chip[aria-pressed=true] .n{color:#9fc4e8}
+  .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+  .badge{font-size:11px;border:1px solid var(--line);border-radius:8px;padding:2px 7px;
+    color:var(--dim);background:#0d1626;white-space:nowrap}
+  .badge.cx{border-color:#2f5f97;color:#bfe0ff;background:#122031}
+  .badge i{font-style:normal;color:var(--dim2)}
+  .pnote{margin-top:9px;padding:9px 11px;border-radius:9px;background:#151f31;
+    border:1px dashed var(--line);color:var(--dim);font-size:12px;line-height:1.55}
+  .pnote a{color:var(--accent)}
 
   /* results */
   .ghead{margin:16px 0 8px;font-size:12.5px;color:var(--dim);display:flex;align-items:baseline;gap:8px;
@@ -153,6 +170,7 @@
         <button class="btn sm" id="fToggle" aria-pressed="true">收起</button>
       </div>
     </div>
+    <div class="cbar" id="carriers"></div>
     <div id="fbody">
       <input id="fq" class="search" type="search" placeholder="搜尋城市／國家／代碼，例如 東京、Japan、NRT">
       <div id="tree"></div>
@@ -176,7 +194,8 @@
 
   <footer>
     <div id="fresh">載入中…</div>
-    <div>資料來源：Cathay Pacific 公開獎勵座位日曆（每日 00:00 HKT 更新，只覆蓋未來 180 日）。只計 <b>國泰航空營運</b> 嘅直飛航班，不包括代碼共享或夥伴航空公司（例如 BA／QF／JL）。里程為標準獎勵單程最低值。</div>
+    <div>座位日曆：Cathay Pacific 公開獎勵座位 API（每日 00:00 HKT 更新，只覆蓋未來 180 日），<b>只包含國泰航空營運嘅航班</b> — 官方 API 冇夥伴航空嘅位表。</div>
+    <div>夥伴航空：可用 Asia Miles 兌換，里數由國泰公開獎勵表逐條航線查得（例如 HKG–LHR 商務 BA 93,000、HKG–NRT 商務 JL 37,000）；<b>位表要喺會員區登入先睇到</b>，所以本 app 只標示「可兌換 + 里數」，唔會偽造有位／冇位。每個艙等顯示嘅里數係該航空公司嘅標準獎勵單程最低值。</div>
     <div>本工具與國泰航空／Asia Miles 無關；兌換前請以 <a href="https://www.cathaypacific.com/cx/en_HK/book-a-trip/redeem-flights.html" target="_blank" rel="noopener">官網</a> 為準。</div>
   </footer>
 </div>
@@ -186,12 +205,16 @@ const CABINS = {eco:"經濟", pey:"特選經濟", bus:"商務", fir:"頭等"};
 const CONT_ORDER = ["亞洲","歐洲","非洲","美洲","大洋洲"];
 const WD = ["日","一","二","三","四","五","六"];
 const SEL_KEY = "amr.selection.v1";
+const CARR_KEY = "amr.carriers.v1";
 const p2 = n => String(n).padStart(2,"0");
 
 let DATA = null;
 let idx = {};
 let selected = null;                                  // Set<code>
 let view = {onlyAvail:true, sort:"tree", q:"", open:true};
+let PART = null;                 // data/partners.json (optional)
+let CARRIERS = {};               // "BA" -> {name, nameZh, destinations}
+let selCarriers = null;          // Set<code>
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s==null?"":s).replace(/[&<>"']/g,
@@ -199,6 +222,62 @@ const esc = s => String(s==null?"":s).replace(/[&<>"']/g,
 const ymd = d => d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
 const parseYMD = s => new Date(+s.slice(0,4), +s.slice(4,6)-1, +s.slice(6,8));
 const fmtDay = s => `${p2(+s.slice(4,6))}/${p2(+s.slice(6,8))}`;
+/* ---------- partner carriers ---------- */
+// Only carriers that actually operate services to Hong Kong. The chart endpoint
+// answers for zone-based/connecting itineraries too (e.g. LATAM on HKG-YYZ), so
+// without this the badges would name airlines that never touch HKG.
+const HKG_CARRIERS = new Set(["CX","BA","QF","JL","AY","QR","MH","AA","CA","ZH","NZ","GA","PG","RJ","UL","AT","IB","WY"]);
+function destCarriers(code){
+  const p = PART && PART.byDest ? PART.byDest[code] : null;
+  if(!p) return {CX: DATA.miles?.[code] || {}};
+  const out = {};
+  Object.keys(p).forEach(c=>{ if(HKG_CARRIERS.has(c)) out[c] = p[c]; });
+  if(!out.CX && DATA.miles?.[code]) out.CX = DATA.miles[code];
+  return out;
+}
+function milesOf(code, carrier, cabin){
+  const m = destCarriers(code)[carrier] || {};
+  const v = (typeof m[cabin] === "number") ? m[cabin] : (DATA.miles?.[code]?.[cabin]);
+  return (typeof v === "number" && v > 0) ? v : null;
+}
+function servedBySel(code){
+  return Object.keys(destCarriers(code)).some(c=> selCarriers.has(c));
+}
+function loadCarriers(){
+  const all = new Set(Object.keys(CARRIERS).filter(c=>
+    DATA.destinations.some(d=> c in destCarriers(d.code))));
+  try{
+    const raw = JSON.parse(localStorage.getItem(CARR_KEY) || "null");
+    if(Array.isArray(raw) && raw.length){
+      const keep = raw.filter(c=> all.has(c));
+      if(keep.length) return new Set(keep);
+    }
+  }catch(e){}
+  return all;
+}
+function saveCarriers(){
+  try{ localStorage.setItem(CARR_KEY, JSON.stringify([...selCarriers])); }catch(e){}
+}
+function buildCarrierBar(){
+  const counts = {};
+  DATA.destinations.forEach(d=> Object.keys(destCarriers(d.code)).forEach(c=> counts[c]=(counts[c]||0)+1));
+  const codes = Object.keys(CARRIERS).filter(c=> counts[c]).sort((a,b)=>
+    (b==="CX") - (a==="CX") || (counts[b]||0) - (counts[a]||0) || a.localeCompare(b));
+  $("#carriers").innerHTML = `<span class="clabel">航空公司</span>` + codes.map(c=>{
+    const on = selCarriers.has(c);
+    const nm = (CARRIERS[c] || {}).nameZh || c;
+    return `<button class="chip" data-carrier="${esc(c)}" aria-pressed="${on}">${esc(nm)} ${esc(c)}<span class="n">${counts[c]||0}</span></button>`;
+  }).join("");
+  $("#carriers").querySelectorAll(".chip").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const c = el.dataset.carrier;
+      if(selCarriers.has(c)) selCarriers.delete(c); else selCarriers.add(c);
+      if(selCarriers.size === 0) selCarriers.add(c);      // never leave the filter empty
+      saveCarriers(); buildCarrierBar(); buildTree(); render();
+    });
+  });
+}
+
 const contRank = c => { const i = CONT_ORDER.indexOf(c); return i<0 ? 99 : i; };
 // one comparator for both the filter tree and the result list: 洲 → 國家 → 城市
 const byFilterOrder = (a,b) => contRank(a.continent)-contRank(b.continent)
@@ -207,9 +286,13 @@ const zhSort = (a,b) => a.localeCompare(b, "zh-Hant");
 
 async function boot(){
   try{
-    const r = await fetch("data/avail.json", {cache:"no-cache"});
-    if(!r.ok) throw new Error("HTTP " + r.status);
-    DATA = await r.json();
+    const [ra, rp] = await Promise.all([
+      fetch("data/avail.json", {cache:"no-cache"}),
+      fetch("data/partners.json", {cache:"no-cache"}).catch(()=>null)
+    ]);
+    if(!ra.ok) throw new Error("HTTP " + ra.status);
+    DATA = await ra.json();
+    if(rp && rp.ok){ try{ PART = await rp.json(); }catch(e){ PART = null; } }
   }catch(e){
     $("#fresh").textContent = "載入失敗：" + e.message;
     $("#results").innerHTML = `<div class="empty">讀唔到 data/avail.json。如果係第一次用，等 GitHub Actions 跑完就會有。</div>`;
@@ -219,6 +302,11 @@ async function boot(){
                                  d.continent = d.continent || "其他"; });
   DATA.dates.forEach((d,i)=> idx[d]=i);
   selected = loadSelection();
+  CARRIERS = (PART && PART.carriers && Object.keys(PART.carriers).length)
+    ? PART.carriers
+    : {CX:{name:"Cathay Pacific", nameZh:"國泰航空", destinations:DATA.destinations.length}};
+  selCarriers = loadCarriers();
+  buildCarrierBar();
 
   const origins = [{code:DATA.hub, label:`香港 Hong Kong (${DATA.hub})`}];
   DATA.destinations.forEach(d=> origins.push({code:d.code, label:`${d.cityZh} ${d.city} (${d.code})`}));
@@ -288,6 +376,7 @@ function saveSel(){
 function buildTree(){
   const groups = new Map();
   DATA.destinations.forEach(d=>{
+    if(!servedBySel(d.code)) return;
     if(view.q && ![d.cityZh, d.city, d.code, d.countryZh, d.country]
        .some(v=> (v||"").toLowerCase().includes(view.q))) return;
     if(!groups.has(d.continent)) groups.set(d.continent, new Map());
@@ -379,13 +468,18 @@ function render(){
     const series = DATA.cabins[cabin] || {};
     DATA.destinations.forEach(d=>{
       if(!selected.has(d.code)) return;
-      const s = series[d.code];
-      if(!s) return;
+      const cs = destCarriers(d.code);
+      const serving = Object.keys(cs).filter(c=> selCarriers.has(c));
+      if(!serving.length) return;
+      const hasCx = serving.includes("CX");
+      const s = hasCx ? series[d.code] : null;
       const cells = days.map(day=>{
+        if(!s) return null;
         const i = idx[day];
         return i===undefined ? null : (s[i]==="." ? "-" : s[i]);
       });
-      rows.push({...d, cells, cnt: cells.filter(c=> c==="H"||c==="L").length,
+      rows.push({...d, cx: hasCx, serving, cells,
+        cnt: cells.filter(c=> c==="H"||c==="L").length,
         miles: DATA.miles?.[d.code]?.[cabin] ?? null});
     });
   }else{
@@ -402,11 +496,13 @@ function render(){
       miles: DATA.miles?.[origin]?.[cabin] ?? null});
   }
 
-  const shown = rows.filter(r=> !view.onlyAvail || r.cnt>0);
+  // partner-only rows carry no availability data, so they are never filtered out
+  const shown = rows.filter(r=> !view.onlyAvail || r.cnt>0 || !r.cx);
   const totalSel = origin===DATA.hub ? selected.size : 1;
 
   $("#stats").innerHTML = `
     <div class="stat"><b>${shown.filter(r=>r.cnt>0).length}</b> 個目的地有位</div>
+    <div class="stat"><b>${shown.filter(r=>!r.cx).length}</b> 個只有夥伴航空</div>
     <div class="stat"><b>${totalSel}</b> 個已選目的地</div>
     <div class="stat"><b>${inRange.length}</b> 日喺日曆內</div>
     <div class="stat">${CABINS[cabin]} · ${origin}</div>`;
@@ -428,14 +524,27 @@ function render(){
         <span class="w">${WD[d.getDay()]}</span><span class="d">${fmtDay(day)}</span>
         <span class="w">${mark}</span></div>`;
     }).join("");
-    const miles = r.miles ? `<span class="miles">${r.miles.toLocaleString()} 里</span>` : "";
     const best = r.cells.includes("H") ? "H" : r.cells.includes("L") ? "L" : null;
+    const badges = (r.serving || ["CX"]).map(c=>{
+      const m = milesOf(r.code, c, cabin);
+      const nm = (CARRIERS[c] || {}).nameZh || c;
+      const tip = c==="CX" ? "國泰營運，有位表" : `${nm}：呢條航線有 Asia Miles 獎勵表（可能直飛，亦可能經樞紐接駁）`;
+      return `<span class="badge${c==="CX"?" cx":""}" title="${esc(tip)}">${esc(c)} <i>${esc(nm)}</i> ${m?m.toLocaleString()+" 里":"—"}</span>`;
+    }).join("");
+    const status = r.cx
+      ? (r.cnt>0 ? `<b style="color:${best==="H"?"#7ff0ac":"#ffd166"}">${r.cnt} 日有位</b>` : "冇位")
+      : `<b style="color:#9fc4e8">位表需登入</b>`;
+    const body = r.cx
+      ? `<div class="days">${chips}</div>`
+      : `<div class="pnote">呢條航線而家只有夥伴航空選項。Asia Miles 兌換位表喺國泰會員區先睇到，本 app 唔會登入你帳戶 —
+          <a href="https://www.cathaypacific.com/cx/en_HK/book-a-trip/redeem-flights.html" target="_blank" rel="noopener">去官網查位 →</a></div>`;
     return `<div class="dest">
       <div class="dhead">
         <div><span class="dname">${esc(r.cityZh)}</span><span class="den">${esc(r.city)}</span><span class="dcode">${esc(r.code)}</span></div>
-        <div class="dmeta">${r.cnt>0 ? `<b style="color:${best==="H"?"#7ff0ac":"#ffd166"}">${r.cnt} 日有位</b>` : "冇位"} ${miles}</div>
+        <div class="dmeta">${status}</div>
       </div>
-      <div class="days">${chips}</div>
+      <div class="badges">${badges}</div>
+      ${body}
     </div>`;
   };
 
